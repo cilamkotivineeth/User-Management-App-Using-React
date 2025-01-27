@@ -1,0 +1,195 @@
+.App {
+  padding: 5px;
+
+}
+
+/* General table styling */
+.table-wrapper {
+  overflow-x: auto; /* Make the table horizontally scrollable on small screens */
+}
+.button {
+  color:#ffffff;
+  background-color: blue;
+  padding: 8px;
+  border-width: 0px;
+  border-radius: 5px;
+}
+.table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  background-color: #ffffff(223, 206, 206);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 576px) {
+  .table th,
+  .table td {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .table .btn {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+
+  .table .add-btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  /* Make the table responsive and scrollable on small screens */
+.table td {
+  padding: 12px;
+  text-align: center;
+  font-size: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.table-striped tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+  background-color: #f0f8ff;
+}
+
+.table .btn {
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 5px;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* Button styling */
+.table .add-btn {
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  margin: 10px 0;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.table .add-btn:hover {
+  background-color: #218838;
+}
+
+.table .btn-warning {
+  background-color: #ffc107;
+  color: white;
+  border: none;
+}
+
+.table .btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.table .btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.table .btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Mobile-first approach */
+@media only screen and (max-width: 576px) {
+  .table th,
+  .table td {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .table .btn {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+
+  .table .add-btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  /* Make the table responsive and scrollable on small screens */
+  .table td {
+    display: block;
+    text-align: right;
+    font-size: 0.85rem; /* Slightly reduce font size for mobile devices */
+    word-wrap: break-word; /* Ensure long words break properly */
+  }
+
+  /* Add labels for table data */
+  .table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  .table-wrapper {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+/* Adjustments for tablets */
+@media only screen and (max-width: 768px) {
+  .table th,
+  .table td {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .table .btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .table .add-btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+/* Large screens (Desktop and above) */
+@media only screen and (min-width: 1024px) {
+  .table th,
+  .table td {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  .table .btn {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+
+  .table .add-btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
+
+.MainHeading {
+  color: #271b1c;
+  background-color: #dfcaca;
+  border-radius: 5px;
+  padding:5px;
+  text-align: center;
+
+}
