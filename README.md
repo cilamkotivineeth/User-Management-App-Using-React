@@ -3,7 +3,7 @@ User Management Application
 This is a User Management application built with React. It allows you to view, add, edit, and delete users. The users are fetched from an API and displayed in a responsive table with actions available for each user. The form to add or edit users is included and it validates inputs before submission.
 
 Features
-Fetch users from a placeholder API (https://jsonplaceholder.typicode.com/users) with pagination.
+Fetch users from a placeholder API  with pagination.
 Add new users to the list.
 Edit existing users.
 Delete users from the list.
@@ -23,7 +23,7 @@ Application Breakdown
 1. UserList Component
 The UserList component is responsible for displaying the list of users in a table format. It includes actions to delete and edit users.
 Queries Used in UserList.js:
-Fetching User Data: The user data is fetched using the componentDidMount lifecycle method, which makes an API request to https://jsonplaceholder.typicode.com/users.
+Fetching User Data: The user data is fetched using the componentDidMount lifecycle method, which makes an API request.
 Pagination: The handleScroll function listens for scroll events, and when the user reaches the bottom of the page, more users are fetched based on the current page.
 
 
