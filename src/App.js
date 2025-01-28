@@ -18,7 +18,7 @@ class App extends Component {
 
   // Fetch users when the component mounts or when the page changes
   async componentDidMount() {
-    this.fetchUsers();
+    this.loadUsersFromLocalStorage(); // Load users from localStorage
     window.addEventListener("scroll", this.handleScroll);
   }
 
@@ -26,6 +26,17 @@ class App extends Component {
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
+
+  loadUsersFromLocalStorage = () => {
+    // Load users from localStorage, if available
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    this.setState({ users });
+  };
+
+  saveUsersToLocalStorage = (users) => {
+    // Save the users array to localStorage
+    localStorage.setItem("users", JSON.stringify(users));
+  };
 
   fetchUsers = async () => {
     const { page } = this.state;
@@ -39,10 +50,14 @@ class App extends Component {
         ...user,
         uuid: uuidv4(), // Add UUID to each user
       }));
-      this.setState((prevState) => ({
-        users: [...prevState.users, ...usersWithUuid],
-        isLoading: false,
-      }));
+      this.setState((prevState) => {
+        const newUsers = [...prevState.users, ...usersWithUuid];
+        this.saveUsersToLocalStorage(newUsers); // Save new users to localStorage
+        return {
+          users: newUsers,
+          isLoading: false,
+        };
+      });
     } catch (error) {
       this.setState({ error: "Failed to fetch users", isLoading: false });
     }
@@ -78,10 +93,14 @@ class App extends Component {
         newUser
       );
       const userWithUuid = { ...newUser, id: response.data.id, uuid: uuidv4() }; // Add uuid
-      this.setState({
-        users: [...this.state.users, userWithUuid],
-        showForm: false,
-        currentUser: null,
+      this.setState((prevState) => {
+        const updatedUsers = [...prevState.users, userWithUuid];
+        this.saveUsersToLocalStorage(updatedUsers); // Save to localStorage
+        return {
+          users: updatedUsers,
+          showForm: false,
+          currentUser: null,
+        };
       });
     } catch (error) {
       this.setState({ error: "Failed to add user" });
@@ -100,11 +119,14 @@ class App extends Component {
             ? { ...updatedUser, uuid: user.uuid }
             : user // Keep the existing uuid
       );
-      this.setState({
-        users: updatedUsers,
-        showForm: false,
-        currentUser: null,
-      });
+      this.setState(
+        {
+          users: updatedUsers,
+          showForm: false,
+          currentUser: null,
+        },
+        () => this.saveUsersToLocalStorage(updatedUsers) // Save updated users to localStorage
+      );
     } catch (error) {
       this.setState({ error: "Failed to update user" });
     }
@@ -114,7 +136,12 @@ class App extends Component {
     try {
       await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
       const updatedUsers = this.state.users.filter((user) => user.id !== id);
-      this.setState({ users: updatedUsers });
+      this.setState(
+        {
+          users: updatedUsers,
+        },
+        () => this.saveUsersToLocalStorage(updatedUsers) // Save updated users to localStorage
+      );
     } catch (error) {
       this.setState({ error: "Failed to delete user" });
     }
